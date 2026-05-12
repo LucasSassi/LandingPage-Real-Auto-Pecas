@@ -53,7 +53,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 72px;
+        height: clamp(60px, 8vh, 72px);
         background: rgba(0, 0, 128, 0.92);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(228, 208, 10, 0.15);
@@ -67,7 +67,7 @@
 
       /* Ajuste da logo enviada */
       .nav-logo-img {
-        height: 48px;
+        height: clamp(36px, 6vw, 48px);
         width: auto;
         display: block;
         transition: transform 0.3s ease;
@@ -84,7 +84,7 @@
         align-items: center;
         gap: 8px;
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 18px;
+        font-size: clamp(14px, 3vw, 18px);
         font-weight: 700;
         color: var(--gold);
         letter-spacing: 1px;
@@ -208,7 +208,7 @@
       .hero-content {
         position: relative;
         z-index: 10;
-        padding: 120px 5% 80px;
+        padding: clamp(80px, 15vh, 120px) 5% clamp(50px, 10vh, 80px);
         max-width: 700px;
       }
 
@@ -220,12 +220,12 @@
         border: 1px solid rgba(228, 208, 10, 0.3);
         border-radius: 100px;
         padding: 6px 16px;
-        font-size: 12px;
+        font-size: clamp(10px, 2vw, 12px);
         font-weight: 600;
         color: var(--gold);
         letter-spacing: 2px;
         text-transform: uppercase;
-        margin-bottom: 28px;
+        margin-bottom: clamp(16px, 4vh, 28px);
         animation: fadeUp 0.8s ease both;
       }
 
@@ -252,11 +252,11 @@
       h1 {
         font-family: "Barlow Condensed", sans-serif;
         font-weight: 900;
-        font-size: clamp(3rem, 6vw, 5.5rem);
+        font-size: clamp(2.2rem, 5vw, 5.5rem);
         line-height: 0.95;
         letter-spacing: -1px;
         text-transform: uppercase;
-        margin-bottom: 28px;
+        margin-bottom: clamp(16px, 4vh, 28px);
         animation: fadeUp 0.8s ease 0.15s both;
       }
 
@@ -267,12 +267,12 @@
       }
 
       .hero-sub {
-        font-size: 1.05rem;
+        font-size: clamp(0.9rem, 2.5vw, 1.05rem);
         line-height: 1.7;
         color: var(--off-white);
         opacity: 0.85;
         max-width: 560px;
-        margin-bottom: 40px;
+        margin-bottom: clamp(24px, 5vh, 40px);
         animation: fadeUp 0.8s ease 0.3s both;
       }
 
@@ -290,11 +290,11 @@
         background: var(--gold);
         color: var(--navy);
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 18px;
+        font-size: clamp(14px, 3vw, 18px);
         font-weight: 800;
         letter-spacing: 1px;
         text-transform: uppercase;
-        padding: 16px 32px;
+        padding: clamp(12px, 2vh, 16px) clamp(20px, 4vw, 32px);
         border-radius: 6px;
         text-decoration: none;
         transition: all 0.25s ease;
@@ -316,11 +316,11 @@
         background: transparent;
         color: var(--white);
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 17px;
+        font-size: clamp(13px, 2.8vw, 17px);
         font-weight: 700;
         letter-spacing: 1px;
         text-transform: uppercase;
-        padding: 15px 28px;
+        padding: clamp(12px, 2vh, 15px) clamp(18px, 3.5vw, 28px);
         border-radius: 6px;
         text-decoration: none;
         border: 1.5px solid rgba(255, 255, 255, 0.25);
@@ -336,9 +336,9 @@
 
       .hero-stats {
         display: flex;
-        gap: 40px;
-        margin-top: 60px;
-        padding-top: 40px;
+        gap: clamp(24px, 5vw, 40px);
+        margin-top: clamp(40px, 8vh, 60px);
+        padding-top: clamp(24px, 5vh, 40px);
         border-top: 1px solid rgba(255, 255, 255, 0.08);
         animation: fadeUp 0.8s ease 0.6s both;
       }
@@ -346,7 +346,7 @@
       .hero-stat-num {
         font-family: "Barlow Condensed", sans-serif;
         font-weight: 900;
-        font-size: 2.2rem;
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
         color: var(--gold);
         line-height: 1;
       }
@@ -403,6 +403,208 @@
         }
         50% {
           transform: rotate(45deg) translateY(5px);
+        }
+      }
+
+      /* ===== CAROUSEL ===== */
+      .carousel-section {
+        background: var(--navy);
+        padding: 80px 5%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .carousel-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .carousel-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(228, 208, 10, 0.1);
+      }
+
+      .carousel-inner {
+        display: flex;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 16 / 9;
+        background: linear-gradient(135deg, var(--navy-light), var(--blue));
+        position: relative;
+        overflow: hidden;
+      }
+
+      .carousel-slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 30% 50%,
+          rgba(228, 208, 10, 0.08) 0%,
+          transparent 60%
+        );
+      }
+
+      .carousel-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+        z-index: 1;
+      }
+
+      .carousel-placeholder {
+        position: relative;
+        z-index: 1;
+        color: rgba(228, 208, 10, 0.4);
+        font-size: 16px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .carousel-placeholder svg {
+        width: 64px;
+        height: 64px;
+        stroke: rgba(228, 208, 10, 0.3);
+        fill: none;
+      }
+
+      .carousel-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 50px;
+        height: 50px;
+        background: rgba(228, 208, 10, 0.9);
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: var(--navy);
+      }
+
+      .carousel-nav:hover {
+        background: var(--gold);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .carousel-nav-prev {
+        left: 16px;
+      }
+
+      .carousel-nav-next {
+        right: 16px;
+      }
+
+      .carousel-nav svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .carousel-indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        display: flex;
+        gap: 10px;
+      }
+
+      .carousel-indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .carousel-indicator.active {
+        background: var(--gold);
+        width: 28px;
+        border-radius: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .carousel-section {
+          padding: 60px 5%;
+        }
+
+        .carousel-slide {
+          aspect-ratio: 4 / 3;
+        }
+
+        .carousel-nav {
+          width: 40px;
+          height: 40px;
+        }
+
+        .carousel-nav svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .carousel-section {
+          padding: 40px 4%;
+        }
+
+        .carousel-slide {
+          aspect-ratio: 3 / 2;
+        }
+
+        .carousel-nav {
+          width: 36px;
+          height: 36px;
+          top: 50%;
+        }
+
+        .carousel-nav-prev {
+          left: 8px;
+        }
+
+        .carousel-nav-next {
+          right: 8px;
+        }
+
+        .carousel-nav svg {
+          width: 18px;
+          height: 18px;
+        }
+
+        .carousel-indicators {
+          bottom: 12px;
+          gap: 6px;
+        }
+
+        .carousel-indicator {
+          width: 8px;
+          height: 8px;
+        }
+
+        .carousel-indicator.active {
+          width: 24px;
         }
       }
 
@@ -693,9 +895,72 @@
         );
       }
 
+      .partners-kicker {
+        position: relative;
+        z-index: 1;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 14px;
+      }
+
+      .partners-title {
+        position: relative;
+        z-index: 1;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 900;
+        line-height: 1;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-bottom: 20px;
+      }
+
+      .partners-title em {
+        font-style: normal;
+        color: var(--gold);
+      }
+
+      .partner-offices {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .partner-office {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(228, 208, 10, 0.14);
+        border-radius: 12px;
+        padding: 14px 12px;
+        text-align: left;
+      }
+
+      .partner-office strong {
+        display: block;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        margin-bottom: 4px;
+      }
+
+      .partner-office span {
+        display: block;
+        font-size: 0.82rem;
+        color: var(--steel);
+        line-height: 1.35;
+      }
+
       .big-number {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 8rem;
+        font-size: clamp(4rem, 15vw, 8rem);
         font-weight: 900;
         color: var(--gold);
         line-height: 1;
@@ -1074,6 +1339,274 @@
         }
       }
 
+      @media (max-width: 360px) {
+        body {
+          font-size: 14px;
+        }
+        
+        nav {
+          height: 56px;
+          padding: 0 3%;
+        }
+
+        .nav-logo-img {
+          height: 36px;
+        }
+
+        .nav-phone {
+          font-size: 13px;
+          gap: 4px;
+        }
+
+        .nav-phone svg {
+          width: 14px;
+          height: 14px;
+        }
+
+        .hero-content {
+          padding: 80px 4% 50px;
+        }
+
+        h1 {
+          font-size: 2rem;
+          margin-bottom: 14px;
+        }
+
+        .hero-sub {
+          font-size: 0.9rem;
+          margin-bottom: 20px;
+        }
+
+        .hero-ctas {
+          gap: 12px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+          font-size: 13px;
+          padding: 11px 16px;
+          gap: 6px;
+        }
+
+        .hero-stats {
+          flex-direction: column;
+          gap: 16px;
+          margin-top: 32px;
+          padding-top: 20px;
+        }
+
+        .hero-stat-num {
+          font-size: 1.6rem;
+        }
+
+        .hero-stat-label {
+          font-size: 0.7rem;
+        }
+
+        .big-number {
+          font-size: 4rem;
+        }
+
+        .big-number-label {
+          font-size: 0.85rem;
+        }
+
+        .scroll-hint {
+          bottom: 16px;
+          font-size: 9px;
+        }
+
+        .scroll-arrow {
+          width: 18px;
+          height: 18px;
+        }
+
+        #diferenciais {
+          padding: 60px 4%;
+        }
+
+        .section-title {
+          font-size: 1.6rem;
+          margin-bottom: 12px;
+        }
+
+        .section-label {
+          font-size: 10px;
+          letter-spacing: 1.5px;
+        }
+
+        .section-desc {
+          font-size: 0.9rem;
+          margin-bottom: 40px;
+        }
+
+        .diferenciais-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        .card {
+          padding: 24px 16px;
+        }
+
+        .card h3 {
+          font-size: 1.1rem;
+          margin-bottom: 8px;
+        }
+
+        .card p {
+          font-size: 0.85rem;
+        }
+
+        .card-icon {
+          width: 44px;
+          height: 44px;
+          margin-bottom: 16px;
+        }
+
+        .card-icon svg {
+          width: 22px;
+          height: 22px;
+        }
+
+        .card-num {
+          font-size: 48px;
+          right: 16px;
+          top: 16px;
+        }
+
+        .brand-bar {
+          padding: 20px 4%;
+        }
+
+        .brand-bar p {
+          font-size: 10px;
+          margin-bottom: 16px;
+          letter-spacing: 1px;
+        }
+
+        .brand-logos {
+          gap: 16px;
+        }
+
+        .brand-logo {
+          font-size: 12px;
+          letter-spacing: 1px;
+        }
+
+        #servicos {
+          padding: 60px 4%;
+        }
+
+        .services-main-card {
+          padding: 32px 20px;
+        }
+
+        .partners-title {
+          font-size: 1.7rem;
+        }
+
+        .partner-offices {
+          grid-template-columns: 1fr;
+        }
+
+        .services-list {
+          gap: 12px;
+          margin-top: 20px;
+        }
+
+        .services-list li {
+          padding: 12px 14px;
+          font-size: 0.85rem;
+          gap: 10px;
+        }
+
+        .big-number-label {
+          font-size: 0.9rem;
+        }
+
+        #contato {
+          padding: 60px 4%;
+        }
+
+        .contact-box {
+          padding: 40px 20px;
+          border-radius: 16px;
+        }
+
+        .contact-box h2 {
+          font-size: 1.6rem;
+          margin-bottom: 12px;
+        }
+
+        .contact-box p {
+          font-size: 0.9rem;
+          margin: 0 auto 28px;
+        }
+
+        .contact-icon-wrap {
+          width: 60px;
+          height: 60px;
+          margin: 0 auto 20px;
+        }
+
+        .contact-icon-wrap svg {
+          width: 28px;
+          height: 28px;
+        }
+
+        .btn-whatsapp {
+          font-size: 14px;
+          padding: 14px 24px;
+          gap: 8px;
+        }
+
+        .btn-whatsapp svg {
+          width: 18px;
+          height: 18px;
+        }
+
+        .contact-info-row {
+          gap: 20px;
+          margin-top: 28px;
+          padding-top: 24px;
+          flex-direction: column;
+        }
+
+        .contact-info-item {
+          font-size: 0.8rem;
+          gap: 8px;
+        }
+
+        footer {
+          padding: 20px 4%;
+          font-size: 11px;
+        }
+
+        .footer-copy {
+          font-size: 10px;
+        }
+
+        .floating-wa {
+          width: 50px;
+          height: 50px;
+          bottom: 16px;
+          right: 16px;
+        }
+
+        .floating-wa svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .floating-wa-ring {
+          width: 50px;
+          height: 50px;
+          bottom: 16px;
+          right: 16px;
+        }
+      }
+
       /* Reveal animation */
       .reveal {
         opacity: 0;
@@ -1103,7 +1636,7 @@
     <nav>
       <div class="nav-logo">
         <img
-          src="image_33c240.png"
+          src="../assets/image_33c240.png"
           alt="Real Auto Peças"
           class="nav-logo-img"
         />
@@ -1133,7 +1666,7 @@
       <div class="hero-content">
         <div class="hero-eyebrow">
           <div class="hero-eyebrow-dot"></div>
-          Especialistas em Autopeças
+          Nacionais e Importados
         </div>
 
         <h1>
@@ -1145,7 +1678,7 @@
         <p class="hero-sub">
           Trabalhamos com a linha completa de peças para todos os tipos de
           veículos: dos nacionais aos importados. Qualidade e garantia para você
-          rodar com segurança.
+          rodar com segurança. Desde 2004 sendo referência em autopeças.
         </p>
 
         <div class="hero-ctas">
@@ -1187,7 +1720,7 @@
 
         <div class="hero-stats">
           <div>
-            <div class="hero-stat-num">+20</div>
+            <div class="hero-stat-num">+22</div>
             <div class="hero-stat-label">Anos de Experiência</div>
           </div>
           <div>
@@ -1200,10 +1733,84 @@
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="scroll-hint">
-        <span>Ver mais</span>
-        <div class="scroll-arrow"></div>
+    <section class="carousel-section">
+      <div class="carousel-container">
+        <div class="carousel-wrapper">
+          <div class="carousel-inner">
+            <div class="carousel-slide">
+              <div class="carousel-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="M21 15l-5-5L5 21" />
+                </svg>
+                <span>Produto 01</span>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="carousel-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="M21 15l-5-5L5 21" />
+                </svg>
+                <span>Produto 02</span>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="carousel-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="M21 15l-5-5L5 21" />
+                </svg>
+                <span>Produto 03</span>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="carousel-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="M21 15l-5-5L5 21" />
+                </svg>
+                <span>Produto 04</span>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="carousel-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="M21 15l-5-5L5 21" />
+                </svg>
+                <span>Produto 05</span>
+              </div>
+            </div>
+          </div>
+          
+          <button class="carousel-nav carousel-nav-prev" aria-label="Anterior" onclick="moveCarousel(-1)">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <button class="carousel-nav carousel-nav-next" aria-label="Próximo" onclick="moveCarousel(1)">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="carousel-indicators">
+            <div class="carousel-indicator active" onclick="goToSlide(0)"></div>
+            <div class="carousel-indicator" onclick="goToSlide(1)"></div>
+            <div class="carousel-indicator" onclick="goToSlide(2)"></div>
+            <div class="carousel-indicator" onclick="goToSlide(3)"></div>
+            <div class="carousel-indicator" onclick="goToSlide(4)"></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1269,7 +1876,7 @@
       <div class="section-label reveal">Por que nos escolher</div>
       <div class="section-title reveal">Nossos <em>Diferenciais</em></div>
       <p class="section-desc reveal">
-        Mais de 20 anos no mercado com foco em qualidade, variedade de estoque e
+        Mais de 22 anos no mercado com foco em qualidade, variedade de estoque e
         atendimento que entende de verdade o que o seu veículo precisa.
       </p>
 
@@ -1391,10 +1998,28 @@
       <div class="services-layout">
         <div class="services-visual reveal">
           <div class="services-main-card">
-            <div class="floating-badge badge-top">Linha Completa</div>
-            <span class="big-number">+5k</span>
-            <div class="big-number-label">Referências em Estoque</div>
-            <div class="floating-badge badge-bottom">Sempre Disponível</div>
+            <div class="partners-kicker">Oficinas que confiam em nosso trabalho</div>
+            <div class="partners-title">
+              Rede de <em>Confiança</em> para Indicar e Atender
+            </div>
+            <div class="partner-offices">
+              <div class="partner-office">
+                <strong>Oficina Centro</strong>
+                <span>Diagnóstico e manutenção rápida</span>
+              </div>
+              <div class="partner-office">
+                <strong>Auto Center Sul</strong>
+                <span>Suspensão, freios e revisões</span>
+              </div>
+              <div class="partner-office">
+                <strong>Garage Premium</strong>
+                <span>Serviços para nacionais e importados</span>
+              </div>
+              <div class="partner-office">
+                <strong>Mecânica Express</strong>
+                <span>Atendimento ágil e especializado</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1404,8 +2029,7 @@
             Peças para <em>Todo Tipo</em> de Veículo
           </div>
           <p class="section-desc reveal">
-            Do motor à lataria, trabalhamos com a linha completa de peças e
-            acessórios para carros nacionais e importados.
+            Combinamos o maior estoque de componentes internos de motor com uma linha completa para o seu veículo. Seja ele nacional ou importado, temos a peça certa para manter sua performance em dia.
           </p>
 
           <ul class="services-list">
@@ -1489,7 +2113,7 @@
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
-              Gravataí, RS
+              Ponta Grossa, PR, Nova Russia Av. Ernesto Vilela, 70
             </div>
             <div class="contact-info-item">
               <svg viewBox="0 0 24 24">
@@ -1516,7 +2140,7 @@
         >
       </div>
       <div class="footer-copy">
-        © 2026 Real Auto Peças. Todos os direitos reservados.<br />
+        2026 Real Auto Peças. Todos os direitos reservados.<br />
         Qualidade e garantia em cada peça.
       </div>
     </footer>
@@ -1573,6 +2197,56 @@
         } else {
           nav.style.background = "rgba(0, 0, 128, 0.92)";
         }
+      });
+
+      // Carousel functionality
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".carousel-slide");
+      const indicators = document.querySelectorAll(".carousel-indicator");
+      const carouselInner = document.querySelector(".carousel-inner");
+      const totalSlides = slides.length;
+      let autoPlayInterval;
+
+      function updateCarousel() {
+        carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
+        indicators.forEach((indicator, index) => {
+          indicator.classList.toggle("active", index === currentSlide);
+        });
+      }
+
+      function moveCarousel(direction) {
+        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+        updateCarousel();
+        resetAutoPlay();
+      }
+
+      function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateCarousel();
+        resetAutoPlay();
+      }
+
+      function autoPlay() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+      }
+
+      function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(autoPlay, 4000);
+      }
+
+      // Initialize carousel
+      updateCarousel();
+      autoPlayInterval = setInterval(autoPlay, 4000);
+
+      // Pause on hover
+      document.querySelector(".carousel-wrapper").addEventListener("mouseenter", () => {
+        clearInterval(autoPlayInterval);
+      });
+
+      document.querySelector(".carousel-wrapper").addEventListener("mouseleave", () => {
+        resetAutoPlay();
       });
     </script>
   </body>
