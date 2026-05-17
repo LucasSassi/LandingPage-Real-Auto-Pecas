@@ -7,4 +7,4 @@ Landing page institucional da Real Auto Peças, organizada com a seguinte estrut
 
 ## Como abrir
 
-Abra o a URL: `realautopecaspg.com`
+Abra a URL: `realautopecaspg.com`
