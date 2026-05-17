@@ -7,4 +7,4 @@ Landing page institucional da Real Auto Peças, organizada com a seguinte estrut
 
 ## Como abrir
 
-Abra o arquivo `src/real-autopecas.html` no navegador ou no VS Code.
+Abra o a URL: `realautopecaspg.com`
