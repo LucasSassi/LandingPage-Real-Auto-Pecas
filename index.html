@@ -1,0 +1,2255 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/fav.png" />
+    <title>Real Auto Peças | A Peça Certa para o Seu Carro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #000080;
+        --navy-mid: #00006e;
+        --navy-light: #0000a0;
+        --blue: #0000b0;
+        --blue-vivid: #0000c0;
+        --gold: #e4d00a;
+        --gold-dark: #b8a808;
+        --gold-light: #f0de30;
+        --white: #ffffff;
+        --off-white: #e8ecff;
+        --steel: #9999cc;
+        --text-muted: #7777aa;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Barlow", sans-serif;
+        background: var(--navy);
+        color: var(--white);
+        overflow-x: hidden;
+      }
+
+      /* ===== NAVBAR ===== */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 0 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: clamp(60px, 8vh, 72px);
+        background: rgba(0, 0, 128, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(228, 208, 10, 0.15);
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* Ajuste da logo enviada */
+      .nav-logo-img {
+        height: clamp(36px, 6vw, 48px);
+        width: auto;
+        display: block;
+        transition: transform 0.3s ease;
+        /* Mescla o fundo escuro da imagem com o fundo da barra de navegação */
+        mix-blend-mode: lighten;
+      }
+
+      .nav-logo:hover .nav-logo-img {
+        transform: scale(1.05);
+      }
+
+      .nav-phone {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(14px, 3vw, 18px);
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 1px;
+        text-decoration: none;
+      }
+
+      .nav-phone svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* ===== HERO ===== */
+      #hero {
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 70% 50%,
+            rgba(0, 0, 160, 0.35) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 50% 80% at 10% 80%,
+            rgba(228, 208, 10, 0.08) 0%,
+            transparent 50%
+          ),
+          linear-gradient(
+            135deg,
+            #00004a 0%,
+            #000080 40%,
+            #00006e 70%,
+            #000080 100%
+          );
+      }
+
+      /* Animated grid lines */
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(228, 208, 10, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(228, 208, 10, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+        animation: gridShift 20s linear infinite;
+      }
+
+      @keyframes gridShift {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(60px);
+        }
+      }
+
+      /* Speed lines */
+      .hero-lines {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .hero-lines::before {
+        content: "";
+        position: absolute;
+        top: 35%;
+        left: -10%;
+        width: 120%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(228, 208, 10, 0.4) 50%,
+          transparent 100%
+        );
+        animation: speedLine1 3s ease-in-out infinite;
+      }
+
+      .hero-lines::after {
+        content: "";
+        position: absolute;
+        top: 55%;
+        left: -10%;
+        width: 80%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(228, 208, 10, 0.2) 60%,
+          transparent 100%
+        );
+        animation: speedLine1 3s ease-in-out infinite 1.5s;
+      }
+
+      @keyframes speedLine1 {
+        0% {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(50%);
+          opacity: 0;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        padding: clamp(80px, 15vh, 120px) 5% clamp(50px, 10vh, 80px);
+        max-width: 700px;
+      }
+
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(228, 208, 10, 0.12);
+        border: 1px solid rgba(228, 208, 10, 0.3);
+        border-radius: 100px;
+        padding: 6px 16px;
+        font-size: clamp(10px, 2vw, 12px);
+        font-weight: 600;
+        color: var(--gold);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: clamp(16px, 4vh, 28px);
+        animation: fadeUp 0.8s ease both;
+      }
+
+      .hero-eyebrow-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--gold);
+        border-radius: 50%;
+        animation: pulse 2s ease infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(0.7);
+        }
+      }
+
+      h1 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: clamp(2.2rem, 5vw, 5.5rem);
+        line-height: 0.95;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        margin-bottom: clamp(16px, 4vh, 28px);
+        animation: fadeUp 0.8s ease 0.15s both;
+      }
+
+      h1 em {
+        font-style: normal;
+        color: var(--gold);
+        display: block;
+      }
+
+      .hero-sub {
+        font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+        line-height: 1.7;
+        color: var(--off-white);
+        opacity: 0.85;
+        max-width: 560px;
+        margin-bottom: clamp(24px, 5vh, 40px);
+        animation: fadeUp 0.8s ease 0.3s both;
+      }
+
+      .hero-ctas {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        animation: fadeUp 0.8s ease 0.45s both;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--gold);
+        color: var(--navy);
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(14px, 3vw, 18px);
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: clamp(12px, 2vh, 16px) clamp(20px, 4vw, 32px);
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.25s ease;
+        box-shadow: 0 4px 24px rgba(228, 208, 10, 0.3);
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-primary:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(228, 208, 10, 0.45);
+      }
+
+      .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: transparent;
+        color: var(--white);
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(13px, 2.8vw, 17px);
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: clamp(12px, 2vh, 15px) clamp(18px, 3.5vw, 28px);
+        border-radius: 6px;
+        text-decoration: none;
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        transition: all 0.25s ease;
+        cursor: pointer;
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        background: rgba(228, 208, 10, 0.05);
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: clamp(24px, 5vw, 40px);
+        margin-top: clamp(40px, 8vh, 60px);
+        padding-top: clamp(24px, 5vh, 40px);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        animation: fadeUp 0.8s ease 0.6s both;
+      }
+
+      .hero-stat-num {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
+        color: var(--gold);
+        line-height: 1;
+      }
+
+      .hero-stat-label {
+        font-size: 0.78rem;
+        color: var(--steel);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-top: 4px;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Scroll indicator */
+      .scroll-hint {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: var(--steel);
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        animation: fadeUp 1s ease 1s both;
+      }
+
+      .scroll-arrow {
+        width: 24px;
+        height: 24px;
+        border-right: 2px solid var(--gold);
+        border-bottom: 2px solid var(--gold);
+        transform: rotate(45deg);
+        animation: bounce 2s ease infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: rotate(45deg) translateY(0);
+        }
+        50% {
+          transform: rotate(45deg) translateY(5px);
+        }
+      }
+
+      /* ===== CAROUSEL ===== */
+      .carousel-section {
+        background: var(--navy);
+        padding: 80px 5%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .carousel-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .carousel-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(228, 208, 10, 0.1);
+      }
+
+      .carousel-inner {
+        display: flex;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 16 / 9;
+        background: linear-gradient(135deg, var(--navy-light), var(--blue));
+        position: relative;
+        overflow: hidden;
+      }
+
+      .carousel-slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 30% 50%,
+          rgba(228, 208, 10, 0.08) 0%,
+          transparent 60%
+        );
+      }
+
+      .carousel-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+        z-index: 1;
+      }
+
+      .carousel-placeholder {
+        position: relative;
+        z-index: 1;
+        color: rgba(228, 208, 10, 0.4);
+        font-size: 16px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .carousel-placeholder svg {
+        width: 64px;
+        height: 64px;
+        stroke: rgba(228, 208, 10, 0.3);
+        fill: none;
+      }
+
+      .carousel-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 50px;
+        height: 50px;
+        background: rgba(228, 208, 10, 0.9);
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: var(--navy);
+      }
+
+      .carousel-nav:hover {
+        background: var(--gold);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .carousel-nav-prev {
+        left: 16px;
+      }
+
+      .carousel-nav-next {
+        right: 16px;
+      }
+
+      .carousel-nav svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .carousel-indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        display: flex;
+        gap: 10px;
+      }
+
+      .carousel-indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .carousel-indicator.active {
+        background: var(--gold);
+        width: 28px;
+        border-radius: 5px;
+      }
+
+      @media (max-width: 768px) {
+        #hero {
+          min-height: auto;
+        }
+
+        .carousel-section {
+          padding: 60px 5%;
+        }
+
+        .carousel-slide {
+          aspect-ratio: 4 / 3;
+        }
+
+        .carousel-nav {
+          width: 40px;
+          height: 40px;
+        }
+
+        .carousel-nav svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .carousel-section {
+          padding: 40px 4%;
+        }
+
+        .carousel-slide {
+          aspect-ratio: 3 / 2;
+        }
+
+        .carousel-nav {
+          width: 36px;
+          height: 36px;
+          top: 50%;
+        }
+
+        .carousel-nav-prev {
+          left: 8px;
+        }
+
+        .carousel-nav-next {
+          right: 8px;
+        }
+
+        .carousel-nav svg {
+          width: 18px;
+          height: 18px;
+        }
+
+        .carousel-indicators {
+          bottom: 12px;
+          gap: 6px;
+        }
+
+        .carousel-indicator {
+          width: 8px;
+          height: 8px;
+        }
+
+        .carousel-indicator.active {
+          width: 24px;
+        }
+      }
+
+      /* ===== TRUST STRIP ===== */
+      .trust-strip {
+        background: var(--gold);
+        padding: 14px 5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        overflow: hidden;
+      }
+
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--navy);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      .trust-item svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+
+      .trust-sep {
+        width: 4px;
+        height: 4px;
+        background: rgba(10, 22, 40, 0.3);
+        border-radius: 50%;
+      }
+
+      /* ===== DIFERENCIAIS ===== */
+      #diferenciais {
+        padding: 100px 5%;
+        background: var(--navy);
+        position: relative;
+      }
+
+      #diferenciais::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(228, 208, 10, 0.3),
+          transparent
+        );
+      }
+
+      .section-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 12px;
+      }
+
+      .section-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: clamp(2.2rem, 4vw, 3.5rem);
+        text-transform: uppercase;
+        line-height: 1;
+        letter-spacing: -0.5px;
+        margin-bottom: 16px;
+      }
+
+      .section-title em {
+        font-style: normal;
+        color: var(--gold);
+      }
+
+      .section-desc {
+        font-size: 1rem;
+        color: var(--steel);
+        line-height: 1.7;
+        max-width: 500px;
+        margin-bottom: 60px;
+      }
+
+      .diferenciais-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        background: var(--navy-mid);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 36px 32px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+      }
+
+      .card:hover {
+        border-color: rgba(228, 208, 10, 0.2);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .card-icon {
+        width: 56px;
+        height: 56px;
+        background: rgba(228, 208, 10, 0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        transition: background 0.3s ease;
+      }
+
+      .card:hover .card-icon {
+        background: rgba(228, 208, 10, 0.18);
+      }
+
+      .card-icon svg {
+        width: 28px;
+        height: 28px;
+        color: var(--gold);
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .card-num {
+        position: absolute;
+        top: 24px;
+        right: 28px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 60px;
+        font-weight: 900;
+        color: rgba(228, 208, 10, 0.06);
+        line-height: 1;
+        user-select: none;
+      }
+
+      .card h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 10px;
+      }
+
+      .card p {
+        font-size: 0.92rem;
+        color: var(--steel);
+        line-height: 1.65;
+      }
+
+      /* ===== BRAND BAR ===== */
+      .brand-bar {
+        background: var(--navy-mid);
+        padding: 32px 5%;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .brand-bar-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .brand-bar p {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--text-muted);
+        margin-bottom: 24px;
+      }
+
+      .brand-logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 36px;
+        flex-wrap: wrap;
+      }
+
+      .brand-logo {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.2);
+        transition: color 0.3s;
+      }
+
+      .brand-logo:hover {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* ===== SERVICES GRID ===== */
+      #servicos {
+        padding: 100px 5%;
+        background: linear-gradient(
+          180deg,
+          var(--navy) 0%,
+          var(--navy-mid) 100%
+        );
+      }
+
+      .services-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      @media (max-width: 900px) {
+        .services-layout {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+      }
+
+      .services-visual {
+        position: relative;
+      }
+
+      .services-main-card {
+        background: linear-gradient(
+          135deg,
+          var(--blue-vivid),
+          var(--navy-light)
+        );
+        border-radius: 16px;
+        padding: 48px 40px;
+        text-align: center;
+        border: 1px solid rgba(228, 208, 10, 0.15);
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .services-main-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(228, 208, 10, 0.06) 0%,
+          transparent 60%
+        );
+      }
+
+      .partners-kicker {
+        position: relative;
+        z-index: 1;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 14px;
+      }
+
+      .partners-title {
+        position: relative;
+        z-index: 1;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 900;
+        line-height: 1;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-bottom: 20px;
+      }
+
+      .partners-title em {
+        font-style: normal;
+        color: var(--gold);
+      }
+
+      .partner-offices {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .partner-office {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(228, 208, 10, 0.14);
+        border-radius: 12px;
+        padding: 14px 12px;
+        text-align: left;
+      }
+
+      .partner-office strong {
+        display: block;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        margin-bottom: 4px;
+      }
+
+      .partner-office span {
+        display: block;
+        font-size: 0.82rem;
+        color: var(--steel);
+        line-height: 1.35;
+      }
+
+      .big-number {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(4rem, 15vw, 8rem);
+        font-weight: 900;
+        color: var(--gold);
+        line-height: 1;
+        display: block;
+      }
+
+      .big-number-label {
+        font-size: 1rem;
+        color: var(--off-white);
+        letter-spacing: 1px;
+        margin-top: 8px;
+      }
+
+      .floating-badge {
+        position: absolute;
+        background: var(--gold);
+        color: var(--navy);
+        border-radius: 100px;
+        padding: 8px 20px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+
+      .badge-top {
+        top: -16px;
+        right: 32px;
+      }
+      .badge-bottom {
+        bottom: -16px;
+        left: 32px;
+      }
+
+      .services-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 32px;
+      }
+
+      .services-list li {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 18px 20px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 0.95rem;
+        color: var(--off-white);
+        transition: all 0.25s ease;
+      }
+
+      .services-list li:hover {
+        background: rgba(228, 208, 10, 0.06);
+        border-color: rgba(228, 208, 10, 0.2);
+      }
+
+      .list-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--gold);
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      /* ===== CONTACT ===== */
+      #contato {
+        padding: 100px 5%;
+        background: var(--navy-mid);
+        position: relative;
+        overflow: hidden;
+      }
+
+      #contato::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(228, 208, 10, 0.07) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+
+      .contact-inner {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      .contact-box {
+        background: linear-gradient(135deg, var(--navy-light), var(--navy));
+        border: 1px solid rgba(228, 208, 10, 0.2);
+        border-radius: 20px;
+        padding: 64px 56px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+      }
+
+      @media (max-width: 600px) {
+        .contact-box {
+          padding: 48px 28px;
+        }
+      }
+
+      .contact-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--gold-dark),
+          var(--gold),
+          var(--gold-light),
+          var(--gold)
+        );
+      }
+
+      .contact-icon-wrap {
+        width: 80px;
+        height: 80px;
+        background: rgba(37, 211, 102, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 28px;
+        border: 2px solid rgba(37, 211, 102, 0.25);
+        animation: iconPulse 3s ease infinite;
+      }
+
+      @keyframes iconPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        }
+        50% {
+          box-shadow: 0 0 0 16px rgba(37, 211, 102, 0.05);
+        }
+      }
+
+      .contact-icon-wrap svg {
+        width: 38px;
+        height: 38px;
+        fill: #25d366;
+      }
+
+      .contact-box h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: clamp(2rem, 4vw, 3rem);
+        text-transform: uppercase;
+        letter-spacing: -0.5px;
+        line-height: 1.05;
+        margin-bottom: 16px;
+      }
+
+      .contact-box h2 em {
+        font-style: normal;
+        color: var(--gold);
+      }
+
+      .contact-box p {
+        font-size: 1rem;
+        color: var(--steel);
+        line-height: 1.7;
+        max-width: 520px;
+        margin: 0 auto 40px;
+      }
+
+      .btn-whatsapp {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: #25d366;
+        color: #fff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 18px 44px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.25s ease;
+        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.25);
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-whatsapp:hover {
+        background: #1ebe5d;
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba(37, 211, 102, 0.35);
+      }
+
+      .btn-whatsapp svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+      }
+
+      .contact-info-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 48px;
+        margin-top: 48px;
+        padding-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        flex-wrap: wrap;
+      }
+
+      .contact-info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--steel);
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: color 0.25s;
+      }
+
+      .contact-info-item:hover {
+        color: var(--gold);
+      }
+
+      .contact-info-item svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex-shrink: 0;
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: var(--navy);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 32px 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .footer-copy {
+        font-size: 12px;
+        color: var(--text-muted);
+        text-align: right;
+        line-height: 1.6;
+      }
+
+      /* ===== FLOATING WA BUTTON ===== */
+      .floating-wa {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 999;
+        width: 60px;
+        height: 60px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+        text-decoration: none;
+        transition: all 0.25s ease;
+        animation: floatIn 1s ease 2s both;
+      }
+
+      .floating-wa:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 40px rgba(37, 211, 102, 0.55);
+      }
+
+      .floating-wa svg {
+        width: 32px;
+        height: 32px;
+        fill: white;
+      }
+
+      @keyframes floatIn {
+        from {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .floating-wa-ring {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 998;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid #25d366;
+        animation: floatRing 2.5s ease infinite 2s;
+      }
+
+      @keyframes floatRing {
+        0% {
+          transform: scale(1);
+          opacity: 0.6;
+        }
+        100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .hero-content {
+          padding-top: 100px;
+        }
+        .hero-stats {
+          gap: 28px;
+        }
+        nav .nav-phone span {
+          display: none;
+        }
+        footer {
+          justify-content: center;
+          text-align: center;
+        }
+        .footer-copy {
+          text-align: center;
+        }
+        .trust-sep {
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav {
+          padding: 0 4%;
+        }
+
+        .hero-content {
+          padding: 88px 4% 54px;
+        }
+
+        .hero-eyebrow {
+          padding: 5px 12px;
+          letter-spacing: 1.4px;
+        }
+
+        h1 {
+          font-size: clamp(2rem, 12vw, 2.9rem);
+          margin-bottom: 18px;
+        }
+
+        .hero-sub {
+          font-size: 0.92rem;
+          margin-bottom: 24px;
+        }
+
+        .hero-stats {
+          margin-top: 28px;
+          padding-top: 18px;
+        }
+
+        .scroll-hint {
+          bottom: 12px;
+          font-size: 8px;
+        }
+
+        .carousel-slide {
+          aspect-ratio: 4 / 3;
+        }
+
+        .hero-stats {
+          flex-direction: column;
+          gap: 20px;
+        }
+        .hero-ctas {
+          flex-direction: column;
+        }
+        .btn-primary,
+        .btn-secondary {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 360px) {
+        body {
+          font-size: 13px;
+        }
+        
+        nav {
+          height: 56px;
+          padding: 0 3%;
+        }
+
+        .nav-logo-img {
+          height: 36px;
+        }
+
+        .nav-phone {
+          font-size: 13px;
+          gap: 4px;
+        }
+
+        .nav-phone svg {
+          width: 14px;
+          height: 14px;
+        }
+
+        .hero-content {
+          padding: 76px 4% 44px;
+        }
+
+        h1 {
+          font-size: 1.9rem;
+          margin-bottom: 12px;
+        }
+
+        .hero-sub {
+          font-size: 0.86rem;
+          margin-bottom: 18px;
+        }
+
+        .hero-ctas {
+          gap: 12px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+          font-size: 13px;
+          padding: 11px 16px;
+          gap: 6px;
+        }
+
+        .hero-stats {
+          flex-direction: column;
+          gap: 16px;
+          margin-top: 24px;
+          padding-top: 16px;
+        }
+
+        .hero-stat-num {
+          font-size: 1.6rem;
+        }
+
+        .hero-stat-label {
+          font-size: 0.7rem;
+        }
+
+        .big-number {
+          font-size: 3.4rem;
+        }
+
+        .big-number-label {
+          font-size: 0.8rem;
+        }
+
+        .scroll-hint {
+          bottom: 16px;
+          font-size: 9px;
+        }
+
+        .scroll-arrow {
+          width: 18px;
+          height: 18px;
+        }
+
+        #diferenciais {
+          padding: 52px 4%;
+        }
+
+        .section-title {
+          font-size: 1.45rem;
+          margin-bottom: 10px;
+        }
+
+        .section-label {
+          font-size: 10px;
+          letter-spacing: 1.5px;
+        }
+
+        .section-desc {
+          font-size: 0.84rem;
+          margin-bottom: 32px;
+        }
+
+        .diferenciais-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        .card {
+          padding: 22px 14px;
+        }
+
+        .card h3 {
+          font-size: 1rem;
+          margin-bottom: 8px;
+        }
+
+        .card p {
+          font-size: 0.8rem;
+        }
+
+        .card-icon {
+          width: 44px;
+          height: 44px;
+          margin-bottom: 16px;
+        }
+
+        .card-icon svg {
+          width: 22px;
+          height: 22px;
+        }
+
+        .card-num {
+          font-size: 48px;
+          right: 16px;
+          top: 16px;
+        }
+
+        .brand-bar {
+          padding: 18px 4%;
+        }
+
+        .brand-bar p {
+          font-size: 10px;
+          margin-bottom: 16px;
+          letter-spacing: 1px;
+        }
+
+        .brand-logos {
+          gap: 16px;
+        }
+
+        .brand-logo {
+          font-size: 11px;
+          letter-spacing: 1px;
+        }
+
+        #servicos {
+          padding: 52px 4%;
+        }
+
+        .services-main-card {
+          padding: 28px 16px;
+        }
+
+        .partners-title {
+          font-size: 1.45rem;
+        }
+
+        .partner-offices {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        .services-list {
+          gap: 12px;
+          margin-top: 20px;
+        }
+
+        .services-list li {
+          padding: 11px 12px;
+          font-size: 0.8rem;
+          gap: 10px;
+        }
+
+        .big-number-label {
+          font-size: 0.82rem;
+        }
+
+        #contato {
+          padding: 52px 4%;
+        }
+
+        .contact-box {
+          padding: 34px 16px;
+          border-radius: 16px;
+        }
+
+        .contact-box h2 {
+          font-size: 1.4rem;
+          margin-bottom: 10px;
+        }
+
+        .contact-box p {
+          font-size: 0.84rem;
+          margin: 0 auto 24px;
+        }
+
+        .contact-icon-wrap {
+          width: 54px;
+          height: 54px;
+          margin: 0 auto 18px;
+        }
+
+        .contact-icon-wrap svg {
+          width: 26px;
+          height: 26px;
+        }
+
+        .btn-whatsapp {
+          font-size: 13px;
+          padding: 13px 20px;
+          gap: 8px;
+        }
+
+        .btn-whatsapp svg {
+          width: 18px;
+          height: 18px;
+        }
+
+        .contact-info-row {
+          gap: 16px;
+          margin-top: 24px;
+          padding-top: 20px;
+          flex-direction: column;
+        }
+
+        .contact-info-item {
+          font-size: 0.76rem;
+          gap: 8px;
+        }
+
+        footer {
+          padding: 18px 4%;
+          font-size: 10px;
+        }
+
+        .footer-copy {
+          font-size: 9px;
+        }
+
+        .floating-wa {
+          width: 48px;
+          height: 48px;
+          bottom: 14px;
+          right: 14px;
+        }
+
+        .floating-wa svg {
+          width: 22px;
+          height: 22px;
+        }
+
+        .floating-wa-ring {
+          width: 48px;
+          height: 48px;
+          bottom: 14px;
+          right: 14px;
+        }
+      }
+
+      /* Reveal animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-logo">
+        <img
+          src="assets/image_33c240.png"
+          alt="Real Auto Peças"
+          class="nav-logo-img"
+        />
+      </div>
+      <a href="tel:+554232250555" class="nav-phone">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .82h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+          />
+        </svg>
+        3225-0555
+      </a>
+    </nav>
+
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-lines"></div>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-dot"></div>
+          Nacionais e Importados
+        </div>
+
+        <h1>
+          A Peça Certa
+          <em>para o Seu</em>
+          Carro Está Aqui.
+        </h1>
+
+        <p class="hero-sub">
+          Trabalhamos com a linha completa de peças para todos os tipos de
+          veículos: dos nacionais aos importados. Qualidade e garantia para você
+          rodar com segurança. Desde 2005 sendo referência em autopeças.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="#contato" class="btn-primary">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"
+              />
+            </svg>
+            Fale com um Especialista
+          </a>
+          <a href="tel:+554232250555" class="btn-secondary">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .82h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+              />
+            </svg>
+            Ligar Agora
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">+20</div>
+            <div class="hero-stat-label">Anos de Experiência</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">★★★★★</div>
+            <div class="hero-stat-label">Avaliação dos Clientes</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">Peças com Garantia</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="carousel-section">
+      <div class="carousel-container">
+        <div class="carousel-wrapper">
+          <div class="carousel-inner">
+            <div class="carousel-slide">
+              <img src="assets/propagandas.png" alt="Produto 01" class="carousel-image" />
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/frente.png" alt="Produto 02" class="carousel-image" />
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/estoque.png" alt="Produto 03" class="carousel-image" />
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/filtros.png" alt="Produto 04" class="carousel-image" />
+            </div>
+            <div class="carousel-slide">
+              <img src="assets/dentro.jpeg" alt="Produto 05" class="carousel-image" />
+            </div>
+          </div>
+          
+          <button class="carousel-nav carousel-nav-prev" aria-label="Anterior" onclick="moveCarousel(-1)">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <button class="carousel-nav carousel-nav-next" aria-label="Próximo" onclick="moveCarousel(1)">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="carousel-indicators">
+            <div class="carousel-indicator active" onclick="goToSlide(0)"></div>
+            <div class="carousel-indicator" onclick="goToSlide(1)"></div>
+            <div class="carousel-indicator" onclick="goToSlide(2)"></div>
+            <div class="carousel-indicator" onclick="goToSlide(3)"></div>
+            <div class="carousel-indicator" onclick="goToSlide(4)"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="trust-item">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+        Pronta Entrega
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+        Nacionais e Importados
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+        Garantia em Todas as Peças
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+        Atendimento Especializado
+      </div>
+    </div>
+
+    <section id="diferenciais">
+      <div class="section-label reveal">Por que nos escolher</div>
+      <div class="section-title reveal">Nossos <em>Diferenciais</em></div>
+      <p class="section-desc reveal">
+        Mais de 20 anos no mercado com foco em qualidade, variedade de estoque e
+        atendimento que entende de verdade o que o seu veículo precisa.
+      </p>
+
+      <div class="diferenciais-grid">
+        <div class="card reveal reveal-delay-1">
+          <span class="card-num">01</span>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+          </div>
+          <h3>Amplo Estoque a Pronta Entrega</h3>
+          <p>
+            Não perca tempo esperando. Mantemos um vasto estoque de peças para
+            que você resolva o problema do seu veículo no mesmo dia.
+          </p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <span class="card-num">02</span>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3>Peças Nacionais e Importadas</h3>
+          <p>
+            Do carro popular ao importado de luxo. Trabalhamos com fornecedores
+            homologados para garantir peças originais e alternativas de
+            qualidade.
+          </p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <span class="card-num">03</span>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+          <h3>Atendimento Especializado</h3>
+          <p>
+            Nossa equipe técnica identifica exatamente a peça certa para o seu
+            veículo, evitando erros de compra e garantindo a compatibilidade
+            perfeita.
+          </p>
+        </div>
+
+        <div class="card reveal reveal-delay-1">
+          <span class="card-num">04</span>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24">
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+            </svg>
+          </div>
+          <h3>Preço Justo e Transparente</h3>
+          <p>
+            Orçamentos sem surpresas. Trabalhamos com preços competitivos e
+            sempre mostramos as opções disponíveis para cada necessidade e
+            orçamento.
+          </p>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <span class="card-num">05</span>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <h3>Garantia em Todas as Peças</h3>
+          <p>
+            Cada peça vendida tem garantia, porque confiamos na qualidade dos
+            nossos produtos. Sua segurança e a do seu veículo são nossa
+            prioridade.
+          </p>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <span class="card-num">06</span>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="1" y="3" width="15" height="13" />
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+              <circle cx="5.5" cy="18.5" r="2.5" />
+              <circle cx="18.5" cy="18.5" r="2.5" />
+            </svg>
+          </div>
+          <h3>Entrega Rápida</h3>
+          <p>
+            Precisa da peça mas não pode vir até nós? Entregamos com agilidade
+            para que seu carro volte a rodar o mais rápido possível.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="brand-bar">
+      <div class="brand-bar-inner">
+        <p>Trabalhamos com as principais marcas</p>
+        <div class="brand-logos">
+          <span class="brand-logo">Bosch</span>
+          <span class="brand-logo">Monroe</span>
+          <span class="brand-logo">NGK</span>
+          <span class="brand-logo">Mahle</span>
+          <span class="brand-logo">SKF</span>
+          <span class="brand-logo">Cofap</span>
+          <span class="brand-logo">Delphi</span>
+          <span class="brand-logo">Magneti Marelli</span>
+          <span class="brand-logo">Mann Filter</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="servicos">
+      <div class="services-layout">
+        <div class="services-visual reveal">
+          <div class="services-main-card">
+            <div class="partners-kicker">Variedade em peças de suspensão</div>
+            <div class="partner-offices">
+              <div class="partner-office">
+                <strong>Amortecedores e molas</strong>
+                <span>Opções para diferentes modelos</span>
+              </div>
+              <div class="partner-office">
+                <strong>Bandejas e pivôs</strong>
+                <span>Peças para manutenção completa</span>
+              </div>
+              <div class="partner-office">
+                <strong>Buchas e bieletas</strong>
+                <span>Grande variedade em estoque</span>
+              </div>
+              <div class="partner-office">
+                <strong>Kits de suspensão</strong>
+                <span>Compra com orientação especializada</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-label reveal">O que oferecemos</div>
+          <div class="section-title reveal">
+            Peças para <em>Todo Tipo</em> de Veículo
+          </div>
+          <p class="section-desc reveal">
+            Combinamos o maior estoque de componentes internos de motor com uma linha completa para o seu veículo. Seja ele nacional ou importado, temos a peça certa para manter sua performance em dia.
+          </p>
+
+          <ul class="services-list">
+            <li class="reveal reveal-delay-1">
+              <div class="list-dot"></div>
+              Motor, câmbio e transmissão
+            </li>
+            <li class="reveal reveal-delay-1">
+              <div class="list-dot"></div>
+              Suspensão, direção e freios
+            </li>
+            <li class="reveal reveal-delay-2">
+              <div class="list-dot"></div>
+              Filtros, velas e itens de manutenção
+            </li>
+            <li class="reveal reveal-delay-3">
+              <div class="list-dot"></div>
+              Iluminação e estética automotiva
+            </li>
+            <li class="reveal reveal-delay-3">
+              <div class="list-dot"></div>
+              Arrefecimento e combustível
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="contact-inner">
+        <div class="contact-box reveal">
+          <div class="contact-icon-wrap">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+              />
+              <path
+                d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.105 1.523 5.824L0 24l6.335-1.498A11.937 11.937 0 0012 24c6.627 0 12-5.373 12-12S18.626 0 11.999 0zm.001 21.818a9.808 9.808 0 01-5.001-1.369l-.359-.214-3.722.879.916-3.618-.234-.372A9.82 9.82 0 012.18 12c0-5.418 4.402-9.818 9.82-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"
+              />
+            </svg>
+          </div>
+
+          <h2>Precisa de um <em>Orçamento Rápido?</em></h2>
+          <p>
+            Chame agora no WhatsApp e consulte nossa disponibilidade! Atendemos
+            em instantes com agilidade e conhecimento técnico.
+          </p>
+
+          <a
+            href="https://wa.me/5542991195950"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-whatsapp"
+          >
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+              />
+              <path
+                d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.105 1.523 5.824L0 24l6.335-1.498A11.937 11.937 0 0012 24c6.627 0 12-5.373 12-12S18.626 0 11.999 0zm.001 21.818a9.808 9.808 0 01-5.001-1.369l-.359-.214-3.722.879.916-3.618-.234-.372A9.82 9.82 0 012.18 12c0-5.418 4.402-9.818 9.82-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"
+              />
+            </svg>
+            Chamar no WhatsApp Agora
+          </a>
+
+          <div class="contact-info-row">
+            <a href="tel:+554232250555" class="contact-info-item">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .82h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                />
+              </svg>
+              (42) 3225-0555
+            </a>
+            <div class="contact-info-item">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Ponta Grossa, PR, Nova Russia Av. Ernesto Vilela, 70
+            </div>
+            <div class="contact-info-item">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              Seg – Sáb: 08h às 18h
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-logo">
+        <span
+          style="
+            font-family: &quot;Barlow Condensed&quot;, sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--gold);
+          "
+          >REAL AUTO PEÇAS</span
+        >
+      </div>
+      <div class="footer-copy">
+        2026 Real Auto Peças. Todos os direitos reservados.<br />
+        Qualidade e garantia em cada peça.
+      </div>
+    </footer>
+
+    <div class="floating-wa-ring"></div>
+    <a
+      href="https://wa.me/5542991195950"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="floating-wa"
+      title="Chamar no WhatsApp"
+    >
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+        />
+        <path
+          d="M11.999 0C5.373 0 0 5.373 0 12c0 2.117.554 4.105 1.523 5.824L0 24l6.335-1.498A11.937 11.937 0 0012 24c6.627 0 12-5.373 12-12S18.626 0 11.999 0zm.001 21.818a9.808 9.808 0 01-5.001-1.369l-.359-.214-3.722.879.916-3.618-.234-.372A9.82 9.82 0 012.18 12c0-5.418 4.402-9.818 9.82-9.818 5.418 0 9.818 4.4 9.818 9.818 0 5.418-4.4 9.818-9.818 9.818z"
+        />
+      </svg>
+    </a>
+
+    <script>
+      // Scroll reveal
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      reveals.forEach((el) => observer.observe(el));
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.querySelector(a.getAttribute("href"));
+          if (target) target.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      // Navbar scroll style
+      const nav = document.querySelector("nav");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 80) {
+          nav.style.background = "rgba(0, 0, 100, 0.98)";
+        } else {
+          nav.style.background = "rgba(0, 0, 128, 0.92)";
+        }
+      });
+
+      // Carousel functionality
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".carousel-slide");
+      const indicators = document.querySelectorAll(".carousel-indicator");
+      const carouselInner = document.querySelector(".carousel-inner");
+      const totalSlides = slides.length;
+      let autoPlayInterval;
+
+      function updateCarousel() {
+        carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
+        indicators.forEach((indicator, index) => {
+          indicator.classList.toggle("active", index === currentSlide);
+        });
+      }
+
+      function moveCarousel(direction) {
+        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+        updateCarousel();
+        resetAutoPlay();
+      }
+
+      function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateCarousel();
+        resetAutoPlay();
+      }
+
+      function autoPlay() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+      }
+
+      function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(autoPlay, 4000);
+      }
+
+      // Initialize carousel
+      updateCarousel();
+      autoPlayInterval = setInterval(autoPlay, 4000);
+
+      // Pause on hover
+      document.querySelector(".carousel-wrapper").addEventListener("mouseenter", () => {
+        clearInterval(autoPlayInterval);
+      });
+
+      document.querySelector(".carousel-wrapper").addEventListener("mouseleave", () => {
+        resetAutoPlay();
+      });
+    </script>
+  </body>
+</html>
